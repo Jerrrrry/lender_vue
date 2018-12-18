@@ -4,7 +4,8 @@ import FourOFour from './views/FourOFour';
 
 import bus from './bus';
 import Home from './views/Home';
-
+import Team from './views/Team';
+import Player from './views/Player';
 import meta from 'vue-meta';
 
 Vue.use(VueRouter);
@@ -30,7 +31,17 @@ const routes = [
   {
     path: '*',
     redirect: '/404'
-  }
+  },
+  {
+    name: 'team',
+    path: '/team/:id',
+    component: Team
+  },
+  {
+    name: 'player',
+    path: '/player/:id',
+    component: Player
+  },
 ];
 
 const router = new VueRouter({

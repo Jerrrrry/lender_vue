@@ -1,7 +1,6 @@
 <template>
 <div class="container">
-  <h2>Hover Rows</h2>
-  <p>The .table-hover class enables a hover state on table rows:</p>
+  <h2>All Teams</h2>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -14,7 +13,12 @@
       <tr v-for="team in teams">
         <td>{{team.name}}</td>
         <td>{{team.created_at}}</td>
-        <td>{{team.id}}</td>
+        <td>
+          <router-link
+            :to="{ name: 'team', params: { id: team.id } }">
+            Players
+          </router-link>
+        </td>
       </tr>
       
     </tbody>
