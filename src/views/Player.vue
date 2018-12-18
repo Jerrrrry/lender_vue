@@ -26,7 +26,7 @@
             </option>
       </select>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="button" class="btn btn-default" @click="updatePlayer(information)">Save</button>
         
   </form>
 </div>
@@ -93,6 +93,25 @@ export default {
           resolve(response.data.player);
         });
       },
+      updatePlayer: function (information) {
+        return new Promise(async (resolve, reject) => {
+          let response;
+          try {
+            response = await this.put(`player`,information);
+          } catch (error) {
+            console.log(error)
+            this.$router.push({name: 'four-o-four'});
+            return;
+          }
+          console.log('win')
+          this.player=response.data.player;
+          resolve(response.data.player);
+        });
+      },
+      clickSave:async function(information){
+          that=this;
+          that.player=await that.updatePlayer(information);
+      }
   }
 
 }

@@ -4395,6 +4395,11 @@ vue-analytics@^5.7.1:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.7.1.tgz#6a3ba04a7beb0915c6b5799729dc5c1e3b5b4912"
 
+vue-csrf@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/vue-csrf/-/vue-csrf-1.1.0.tgz#6386cc923acc2ec01c7a91722fad4f41ff8ce1a6"
+  integrity sha512-pHFUqfZRj65463FHY0XSdZ9eZk8snsJ9TM/Y74eKYoLIJpA2kYOJ2n0wJ/kmPf0ppMU/Euu35Tr3KB+nn3MHMA==
+
 vue-hot-reload-api@^2.0.11:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.2.4.tgz#683bd1d026c0d3b3c937d5875679e9a87ec6cd8f"
