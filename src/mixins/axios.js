@@ -1,10 +1,5 @@
 import Axios from 'axios';
 
-Axios.defaults.headers.common = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'X-CSRF-TOKEN' : document.csrf_token
-};
-
 export default {
 
   methods: {

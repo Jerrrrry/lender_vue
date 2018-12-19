@@ -124,6 +124,7 @@ export default {
             return;
           }
           this.player=response.data.player;
+          this.$router.push({name: 'team',params:{id:response.data.player.team.id}});
           resolve(response.data.player);
         });
         
