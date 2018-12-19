@@ -5,7 +5,8 @@
     
    
     <div class="form-group">
-        <h2>Player Profile</h2>   
+        <h2 v-show="page=='player'" >Player Profile</h2> 
+        <h2 v-show="page=='addplayer'" >Add new Player</h2>   
     </div>
     <div class="form-group">
         <label for="email">First Name:</label>
@@ -26,7 +27,8 @@
             </option>
       </select>
     </div>
-    <button type="button" class="btn btn-default" @click="updatePlayer(information)">Save</button>
+    <button v-show="page=='player'" type="button" class="btn btn-default" @click="updatePlayer(information)">Save</button>
+    <button v-show="page=='addplayer'" type="button" class="btn btn-default" @click="addPlayer(information)">Add</button>
         
   </form>
 </div>
@@ -34,6 +36,7 @@
 
 <script>
 import axios from '../mixins/axios';
+
 export default {
   name: 'Player',
 
@@ -54,12 +57,15 @@ export default {
   },
 
   created: async function () {
+      if(this.$route.name === 'player') {
+        this.player = await this.setPlayer();
+        this.information.last_name=this.player.last_name;
+        this.information.first_name=this.player.first_name;
+        this.information.team_id=this.player.team.id;
+        this.information.id=this.player.id;
+      }
       this.options = await this.setOptions();
-      this.player = await this.setPlayer();
-      this.information.last_name=this.player.last_name;
-      this.information.first_name=this.player.first_name;
-      this.information.team_id=this.player.team.id;
-      this.information.id=this.player.id;
+      this.page=this.$route.name;
   },
 
   components:{
@@ -97,21 +103,18 @@ export default {
         return new Promise(async (resolve, reject) => {
           let response;
           try {
-            response = await this.put(`player`,information);
+            response = await this.post(`player`,information);
           } catch (error) {
             console.log(error)
             this.$router.push({name: 'four-o-four'});
             return;
           }
-          console.log('win')
           this.player=response.data.player;
           resolve(response.data.player);
         });
+        
       },
-      clickSave:async function(information){
-          that=this;
-          that.player=await that.updatePlayer(information);
-      }
+      
   }
 
 }

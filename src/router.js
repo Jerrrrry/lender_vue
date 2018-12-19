@@ -42,6 +42,11 @@ const routes = [
     path: '/player/:id',
     component: Player
   },
+  {
+    name: 'addplayer',
+    path: '/addplayer',
+    component: Player
+  },
 ];
 
 const router = new VueRouter({
