@@ -28,7 +28,19 @@
       </select>
     </div>
     <button v-show="page=='player'" type="button" class="btn btn-default" @click="updatePlayer(information)">Save</button>
-    <button v-show="page=='addplayer'" type="button" class="btn btn-default" @click="addPlayer(information)">Add</button>
+    <button v-show="page=='addplayer'&&
+                    information.last_name!==''&&
+                    information.first_name!==''&&
+                    information.team_id!==''" 
+            type="button" class="btn btn-default" 
+            @click="addPlayer(information)">
+            Add
+    </button>
+
+    <div class="form-group" v-show="error!==''">
+      <p>{{error}}</p>
+    </div>
+    
         
   </form>
 </div>
@@ -52,7 +64,9 @@ export default {
           last_name:'',
           first_name:'',
           team_id:'',
-      }
+      },
+      page:'',
+      error:''
     }
   },
 
@@ -103,13 +117,30 @@ export default {
         return new Promise(async (resolve, reject) => {
           let response;
           try {
-            response = await this.post(`player`,information);
+            response = await this.put(`player/${this.$route.params.id}`,information);
           } catch (error) {
             console.log(error)
             this.$router.push({name: 'four-o-four'});
             return;
           }
           this.player=response.data.player;
+          resolve(response.data.player);
+        });
+        
+      },
+
+      addPlayer: function (information) {
+        return new Promise(async (resolve, reject) => {
+          let response;
+          try {
+            response = await this.post(`player`,information);
+          } catch (error) {
+            console.log(error)
+            return;
+          }
+          this.player=response.data.player;
+          this.$router.push({name: 'player',params:{id:response.data.player.id}});
+          this.page='player';
           resolve(response.data.player);
         });
         

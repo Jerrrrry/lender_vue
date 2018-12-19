@@ -5,6 +5,7 @@ import FourOFour from './views/FourOFour';
 import bus from './bus';
 import Home from './views/Home';
 import Team from './views/Team';
+import AddTeam from './views/AddTeam';
 import Player from './views/Player';
 import meta from 'vue-meta';
 
@@ -46,6 +47,11 @@ const routes = [
     name: 'addplayer',
     path: '/addplayer',
     component: Player
+  },
+  {
+    name: 'addteam',
+    path: '/addteam',
+    component: AddTeam
   },
 ];
 
