@@ -22,12 +22,7 @@ export default {
         return new Promise(async (resolve, reject) => {
   
           try {
-            let response = await Axios.post('http://104.248.73.159/api/' + path,info,{
-                    headers: {
-                                "Authorization":localStorage.getItem('token')
-
-                             } 
-            });
+            let response = await Axios.post('http://104.248.73.159/api/' + path,info);
             resolve(response);
   
           } catch (error) {
