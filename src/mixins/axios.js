@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-import utl from '../tools/utl'
+//import utl from '../tools/utl'
 
 export default {
 

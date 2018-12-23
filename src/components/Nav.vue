@@ -17,7 +17,12 @@
             Add Player
         </router-link>
       </li>
-      <li><a href="#">Something Else</a></li>
+      <li>
+        <router-link
+            :to="{ name: 'profile' }">
+            {{username()}} Account Manage
+        </router-link>
+      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li v-show="utl.checkLogin==false">
@@ -25,13 +30,6 @@
             :to="{ name: 'login' }">
             <span class="glyphicon glyphicon-log-in"></span> Login
         </router-link>
-      </li>
-      <li v-show="utl.checkLogin">
-        <router-link
-            :to="{ name: 'profile' }">
-            {{username()}}
-        </router-link>
-        
       </li>
     </ul>
   </div>

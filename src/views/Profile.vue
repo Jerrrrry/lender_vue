@@ -9,7 +9,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-4">
-      <button type="submit" class="btn btn-default" @click="login(information)">Logout</button>
+      <button type="button" class="btn btn-default" @click="logout(information)">Logout</button>
     </div>
   </div>
 </form>
@@ -29,7 +29,7 @@ export default {
   data () {
     return {
       information:{
-          username:'',
+          token:localStorage.setItem('token')
       },
       page:'',
       utl:utl
@@ -46,33 +46,33 @@ export default {
 
   methods:{
     
-      login: function (information) {
+      logout: function (information) {
         return new Promise(async (resolve, reject) => {
           let response;
           try {
-            response = await this.post(`login`,information);
+            response = await this.post(`logout`,information);
           } catch (error) {
             console.log(error)
             return;
           }
-          localStorage.setItem('user',response.data.user)
-          localStorage.setItem('token',response.data.token)
-          localStorage.setItem('authorized',true)
+          localStorage.removeItem('user')
+          localStorage.removeItem('token')
+          localStorage.setItem('authorized',false)
 
-          console.log('login success')
+          console.log('logout success')
          
-          this.$router.push({name: 'home'});
-          resolve(response.data.player);
+          this.$router.push({name: 'login'});
+          resolve(response.data);
         });
         
       },
 
       username(){
-          return this.utl.getUser()
+          return utl.getUser()
       },
 
       token(){
-          return this.utl.getToken()
+          return utl.getToken()
       }
       
   }

@@ -64,6 +64,7 @@ export default {
           last_name:'',
           first_name:'',
           team_id:'',
+          token:localStorage.getItem('token')
       },
       page:'',
       error:''
@@ -140,7 +141,7 @@ export default {
             return;
           }
           this.player=response.data.player;
-          this.$router.push({name: 'player',params:{id:response.data.player.id}});
+          this.$router.push({name: 'team',params:{id:response.data.player.team.id}});
           this.page='player';
           resolve(response.data.player);
         });

@@ -7,7 +7,7 @@
       <input type="text" class="form-control" id="text" placeholder="Enter User Name" v-model="information.username">
     </div>
     <div class="col-sm-4">
-      <button type="submit" class="btn btn-default" @click="login(information)">Login</button>
+      <button type="button" class="btn btn-default" @click="login(information)">Login acc</button>
     </div>
   </div>
 </form>

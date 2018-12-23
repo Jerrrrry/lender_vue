@@ -34,6 +34,7 @@ export default {
     return {
       information:{
           name:'',
+          token:localStorage.getItem('token')
       },
       page:'',
     }
