@@ -20,7 +20,7 @@
       <li>
         <router-link
             :to="{ name: 'profile' }">
-            {{username()}} Account Manage
+            Account Manage
         </router-link>
       </li>
     </ul>
