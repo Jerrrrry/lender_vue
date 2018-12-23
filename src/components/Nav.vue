@@ -19,7 +19,56 @@
       </li>
       <li><a href="#">Something Else</a></li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li v-show="utl.checkLogin==false">
+        <router-link
+            :to="{ name: 'login' }">
+            <span class="glyphicon glyphicon-log-in"></span> Login
+        </router-link>
+      </li>
+      <li v-show="utl.checkLogin">
+        <router-link
+            :to="{ name: 'profile' }">
+            {{username()}}
+        </router-link>
+        
+      </li>
+    </ul>
   </div>
 </nav>
 
 </template>
+
+
+<script>
+import utl from '../tools/utl';
+
+export default {
+  name: 'Nav',
+
+
+  data () {
+    return {
+      page:'',
+      utl:utl
+    }
+  },
+
+  created: function () {
+      this.page=this.$route.name;
+  },
+
+  components:{
+
+  },
+
+  methods:{
+    username(){
+      return this.utl.getUser()
+    }
+      
+  }
+
+}
+
+</script>

@@ -7,7 +7,11 @@ import Home from './views/Home';
 import Team from './views/Team';
 import AddTeam from './views/AddTeam';
 import Player from './views/Player';
+import Login from './views/Login';
+import Profile from './views/Profile';
 import meta from 'vue-meta';
+
+import auth from './middleware/auth';
 
 Vue.use(VueRouter);
 Vue.use(meta);
@@ -22,7 +26,7 @@ const routes = [
   {
     name: 'home',
     path: '/index',
-    component:Home
+    component:Home,
   },
   {
     name: 'four-o-four',
@@ -53,6 +57,16 @@ const routes = [
     path: '/addteam',
     component: AddTeam
   },
+  {
+    name: 'login',
+    path: '/login',
+    component: Login
+  },
+  {
+    name: 'profile',
+    path: '/profile',
+    component: Profile
+  },
 ];
 
 const router = new VueRouter({
@@ -63,7 +77,10 @@ const router = new VueRouter({
 
 
 router.afterEach((to, from) => {
-  console.log('good')
+  if (!localStorage.getItem('user')) {
+    console.log('you are not login')
+    router.push({name: 'login'});
+  }
 })
 
 export default router;

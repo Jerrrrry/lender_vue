@@ -1,5 +1,7 @@
 import Axios from 'axios';
 
+import utl from '../tools/utl'
+
 export default {
 
   methods: {
@@ -20,7 +22,12 @@ export default {
         return new Promise(async (resolve, reject) => {
   
           try {
-            let response = await Axios.post('http://104.248.73.159/api/' + path,info);
+            let response = await Axios.post('http://104.248.73.159/api/' + path,info,{
+                    headers: {
+                                Authorization:localStorage.getItem('token')
+
+                             } 
+            });
             resolve(response);
   
           } catch (error) {
