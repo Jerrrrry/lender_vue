@@ -24,7 +24,7 @@ export default {
           try {
             let response = await Axios.post('http://104.248.73.159/api/' + path,info,{
                     headers: {
-                                Authorization:localStorage.getItem('token')
+                                "Authorization":localStorage.getItem('token')
 
                              } 
             });
